@@ -17,7 +17,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/posts/all")
+    fetch("${process.env.NEXT_PUBLIC_API_URL}/posts/all")
       .then(async (res) => {
         if (!res.ok) {
           console.error("Error fetching posts");

@@ -22,7 +22,7 @@ export default function NewPost() {
       categories: form.categories.split(",").map((cat) => cat.trim()),
     };
 
-    const res = await fetch("http://localhost:5000/api/posts", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

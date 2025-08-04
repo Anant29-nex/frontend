@@ -19,7 +19,7 @@ export default function PostDetailPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:5000/api/posts/public/${id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`)
       .then(async (res) => {
         if (!res.ok) {
           console.error("Error fetching post");

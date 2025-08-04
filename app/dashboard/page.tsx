@@ -12,7 +12,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token");
     if (!token) return router.push("/login");
 
-    fetch("http://localhost:5000/api/posts", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -60,10 +60,13 @@ export default function Dashboard() {
                   className="text-red-600 underline"
                   onClick={async () => {
                     const token = localStorage.getItem("token");
-                    await fetch(`http://localhost:5000/posts/${post._id}`, {
-                      method: "DELETE",
-                      headers: { Authorization: `Bearer ${token}` },
-                    });
+                    await fetch(
+                      `${process.env.NEXT_PUBLIC_API_URL}/posts/${post._id}`,
+                      {
+                        method: "DELETE",
+                        headers: { Authorization: `Bearer ${token}` },
+                      }
+                    );
                     location.reload();
                   }}
                 >

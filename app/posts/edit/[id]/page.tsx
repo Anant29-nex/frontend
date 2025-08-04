@@ -17,7 +17,7 @@ export default function EditPost() {
     const token = localStorage.getItem("token");
     if (!token) return router.push("/login");
 
-    fetch(`http://localhost:5000/posts/${id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -41,7 +41,7 @@ export default function EditPost() {
       categories: form.categories.split(",").map((cat) => cat.trim()),
     };
 
-    await fetch(`http://localhost:5000/posts/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
