@@ -12,7 +12,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token");
     if (!token) return router.push("/login");
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/all`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
