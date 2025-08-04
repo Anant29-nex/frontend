@@ -9,8 +9,13 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    await fetchAPI("/auth/register", "POST", form);
-    router.push("/");
+    try {
+      const { token } = await fetchAPI("/auth/login", "POST", form);
+      localStorage.setItem("token", token);
+      router.push("/dashboard");
+    } catch (err: any) {
+      alert(err.message);
+    }
   };
 
   return (
